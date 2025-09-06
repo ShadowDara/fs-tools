@@ -20,21 +20,41 @@ public class Main {
         if (flags.contains("--license")) {
             System.out.println("LICENSE available at:");
             System.out.println("https://github.com/shadowdara/fs-tools");
+            return;
+        }
+
+        // Parameter für --ls
+        boolean full = false;
+        boolean colored = true;
+        String pathForLs = null;
+
+        // Wir gehen die args durch und suchen nach --ls
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
+                case "--ls":
+                    // Wenn nächstes Argument existiert und kein Flag (kein - oder -- am Anfang), dann ist das Pfad
+                    if (i + 1 < args.length && !args[i + 1].startsWith("-")) {
+                        pathForLs = args[i + 1];
+                        i++; // Wir überspringen den Pfad beim nächsten Durchlauf
+                    }
+                    break;
+                case "-f":
+                    full = true;
+                    break;
+                case "-nc":
+                    colored = false;
+                    break;
+                default:
+                    // Andere Argumente ignorieren
+                    break;
+            }
         }
 
         if (flags.contains("--ls")) {
-            Boolean full = false;
-            Boolean colored = true;
-
-            if (flags.contains("-f")) {
-                full = true;
+            if (pathForLs == null) {
+                pathForLs = System.getProperty("user.dir");
             }
-            if (flags.contains("-nc")) {
-                colored = false;
-            }
-
-            String workingDir = System.getProperty("user.dir");
-            ListFiles.run(workingDir, full, colored);
+            ListFiles.run(pathForLs, full, colored);
             return;
         }
 
