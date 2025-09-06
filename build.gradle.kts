@@ -21,6 +21,6 @@ tasks.test {
 
 tasks.jar {
     manifest {
-        attributes["Main-Class"] = "de.shadowdara.Main"  // Deine Main-Klasse hier anpassen
+        attributes["Main-Class"] = "de.shadowdara.fstools.Main"  // Deine Main-Klasse hier anpassen
     }
 }

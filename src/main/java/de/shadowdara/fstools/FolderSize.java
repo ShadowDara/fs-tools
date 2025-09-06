@@ -1,4 +1,4 @@
-package de.shadowdara.ls;
+package de.shadowdara.fstools;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -42,23 +42,21 @@ public class FolderSize {
         return size[0];
     }
 
-    public static void run(String folder_string) {
+    public static long run(String folder_string) {
         Path folder = Paths.get(folder_string);
 
         if (!Files.exists(folder) || !Files.isDirectory(folder)) {
             System.out.println("Pfad existiert nicht oder ist kein Verzeichnis.");
-            return;
+            return 0;
         }
 
         try {
             long sizeBytes = getFolderSize(folder);
-            System.out.printf("Größe von %s: %,d Bytes (%.2f MB)%n",
-                    folder,
-                    sizeBytes,
-                    sizeBytes / 1024.0 / 1024.0);
+            return sizeBytes;
         } catch (IOException e) {
             System.err.println("Fehler beim Berechnen der Ordnergröße:");
             e.printStackTrace();
         }
+        return 0;
     }
 }
