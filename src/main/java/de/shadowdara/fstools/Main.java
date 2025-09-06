@@ -5,8 +5,6 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        //ColorPrint.print(ColorPrint.BLUE, "Willkommen zu fs-tools!");
-
         Set<String> flags = new HashSet<>(Set.of(args));
 
         if (flags.contains("--help")) {
@@ -14,12 +12,14 @@ public class Main {
             System.out.println("\t[--ls]\tto show all files and folders in a folder");
             System.out.println("\t\t[-f]\tto show the full content with more infos");
             System.out.println("\t\t[-nc]\to suppres colored output");
-            System.out.println("\t[--help]");
+            System.out.println("\nMore Information available here:");
+            System.out.println("https://github.com/shadowdara/fs-tools");
             return;
         }
 
         if (flags.contains("--license")) {
-            License.run();
+            System.out.println("LICENSE available at:");
+            System.out.println("https://github.com/shadowdara/fs-tools");
         }
 
         if (flags.contains("--ls")) {

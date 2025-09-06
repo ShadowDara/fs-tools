@@ -42,3 +42,6 @@ bin/
 .DS_Store
 
 *.exe
+
+src/main/resources/LICENSE
+src/main/resources/Readme.txt

@@ -1,4 +1,4 @@
-LS Size Programm
+# LS Size
 
 Run with help for more Infos
 

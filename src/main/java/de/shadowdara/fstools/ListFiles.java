@@ -12,7 +12,7 @@ public class ListFiles {
         if (files != null) {
             // Extended Version
             if (f) {
-                System.out.printf("%-5s %-30s %10s\n", "Typ", "Name", "Größe (Bytes)");
+                System.out.printf("%-5s %-30s %10s\n", "Typ", "Name", "Size (Bytes)");
                 System.out.println("-------------------------------------------------------------");
 
                 for (File file : files) {
