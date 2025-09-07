@@ -45,3 +45,4 @@ bin/
 
 src/main/resources/LICENSE
 src/main/resources/Readme.txt
+src/main/resources/winstall.lua
