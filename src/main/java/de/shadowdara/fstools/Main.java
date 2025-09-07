@@ -11,7 +11,12 @@ public class Main {
             System.out.println("Usage: fs-tools");
             System.out.println("\t[--ls]\tto show all files and folders in a folder");
             System.out.println("\t\t[-f]\tto show the full content with more infos");
-            System.out.println("\t\t[-nc]\to suppres colored output");
+            System.out.println("\t\t\t[-0]\tto show the size as Bytes");
+            System.out.println("\t\t\t[-1]\tto show the size as KB");
+            System.out.println("\t\t\t[-2]\tto show the size as MB");
+            System.out.println("\t\t\t[-3]\tto show the size as GB");
+            System.out.println("\t\t[-nc]\tto suppres colored output");
+            System.out.println("\t\t[-e]\tto show file and directory errors");
             System.out.println("\nMore Information available here:");
             System.out.println("https://github.com/shadowdara/fs-tools");
             return;
@@ -26,6 +31,8 @@ public class Main {
         // Parameter für --ls
         boolean full = false;
         boolean colored = true;
+        boolean show_error = false;
+        int bytes = 0;
         String pathForLs = null;
 
         // Wir gehen die args durch und suchen nach --ls
@@ -44,6 +51,20 @@ public class Main {
                 case "-nc":
                     colored = false;
                     break;
+                case "-e":
+                    show_error = true;
+                case "-0":
+                    bytes = 0;
+                    break;
+                case "-1":
+                    bytes = 1; //KB
+                    break;
+                case "-2":
+                    bytes = 2; // MB
+                    break;
+                case "-3":
+                    bytes = 3; // GB
+                    break;
                 default:
                     // Andere Argumente ignorieren
                     break;
@@ -54,7 +75,7 @@ public class Main {
             if (pathForLs == null) {
                 pathForLs = System.getProperty("user.dir");
             }
-            ListFiles.run(pathForLs, full, colored);
+            ListFiles.run(pathForLs, full, colored, show_error, bytes);
             return;
         }
 
