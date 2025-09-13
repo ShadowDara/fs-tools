@@ -2,8 +2,8 @@ plugins {
     id("java")
 }
 
-group = "de.shadowdara"
-version = "1.0-SNAPSHOT"
+group = "de.shadowdara.fstools"
+version = "0.1.1-SNAPSHOT"
 
 repositories {
     mavenCentral()

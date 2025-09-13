@@ -23,8 +23,8 @@ public class FolderSize {
             public FileVisitResult visitFileFailed(Path file, IOException exc) {
                 // Fehler beim Zugriff auf einzelne Dateien protokollieren, aber nicht abbrechen
                 if (show_error) {
-                    System.err.println("Zugriff verweigert oder Fehler bei Datei: " + file);
-                    System.err.println("Grund: " + exc.getMessage());
+                    System.err.println("Acces denied or File Error: " + file);
+                    System.err.println("Reason: " + exc.getMessage());
                 }
                 return FileVisitResult.CONTINUE;
             }
@@ -34,7 +34,7 @@ public class FolderSize {
                 // Symbolische Links bei Verzeichnissen überspringen, um Endlosschleifen zu vermeiden
                 if (Files.isSymbolicLink(dir)) {
                     if (show_error) {
-                        System.out.println("Überspringe symbolischen Link (Verzeichnis): " + dir);
+                        System.out.println("Skip Link: " + dir);
                     }
                     return FileVisitResult.SKIP_SUBTREE;
                 }
@@ -50,7 +50,7 @@ public class FolderSize {
 
         if (!Files.exists(folder) || !Files.isDirectory(folder)) {
             if (show_error) {
-                System.out.println("Pfad existiert nicht oder ist kein Verzeichnis.");
+                System.out.println("Path does not exist is is not a directory.");
             }
             return 0;
         }
@@ -60,7 +60,7 @@ public class FolderSize {
             return sizeBytes;
         } catch (IOException e) {
             if (show_error) {
-                System.err.println("Fehler beim Berechnen der Ordnergröße:");
+                System.err.println("Error while calculating Foldersize:");
                 e.printStackTrace();
             }
         }
